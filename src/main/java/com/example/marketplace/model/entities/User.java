@@ -3,8 +3,6 @@ package com.example.marketplace.model.entities;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.util.Set;
-
 @Data
 @Entity
 @Table(name = "users")
@@ -24,15 +22,23 @@ public class User {
     private String state;
     private String zipCode;
     private String country;
+    private String companyName;
+    private String businessType;
+    private String companyAddress;
+    private String companyCity;
+    private String companyState;
+    private String companyZipCode;
+    private String companyCountry;
+    private String companyPhoneNumber;
+    private String vatNumber; // Tax identification number
 
     @Enumerated(EnumType.STRING)
+    @Column(nullable = true)
     private UserType userType;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "user_roles",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Set<Role> roles;
+    @Enumerated(EnumType.STRING)
+    private Role role;
+
 }
 
 
